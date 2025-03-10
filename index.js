@@ -53,8 +53,7 @@ const letReference = k => letValueInMap(k, references);
 const letValueInMap = (k, map) => map.delete(k);
 
 const setObjectAttributes = function (of, attributes) {
-    const $$ = getPrototype(of);
-    return forEachObject(attributes, (v, k) => Object.defineProperty($$, k, v)), $$;
+    return forEachObject(attributes, (v, k) => Object.defineProperty(of, k, v)), of;
 };
 
 const setObjectMethods = function (of, methods) {
