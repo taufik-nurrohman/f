@@ -1,8 +1,8 @@
 const {toCount} = require('@taufik-nurrohman/to');
 
-const forEachArray = function (array, then) {
+const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
-        v = then(array[i], i);
+        v = at(array[i], i);
         if (0 === v) {
             break;
         }
@@ -13,9 +13,9 @@ const forEachArray = function (array, then) {
     return array;
 };
 
-const forEachMap = function (map, then) {
+const forEachMap = function (map, at) {
     for (let [k, v] of map) {
-        v = then(v, k);
+        v = at(v, k);
         if (0 === v) {
             break;
         }
@@ -26,10 +26,10 @@ const forEachMap = function (map, then) {
     return map;
 };
 
-const forEachObject = function (object, then) {
+const forEachObject = function (object, at) {
     let v;
     for (let k in object) {
-        v = then(object[k], k);
+        v = at(object[k], k);
         if (0 === v) {
             break;
         }
@@ -40,8 +40,73 @@ const forEachObject = function (object, then) {
     return object;
 };
 
+const getPrototype = of => of.prototype;
+
+const getReference = key => getValueInMap(key, references) || null;
+
+const getValueInMap = (k, map) => map.get(k);
+
+const hasKeyInMap = (k, map) => map.has(k);
+
+const letReference = k => letValueInMap(k, references);
+
+const letValueInMap = (k, map) => map.delete(k);
+
+const setObjectAttributes = function (of, attributes) {
+    const $$ = getPrototype(of);
+    return forEachObject(attributes, (v, k) => Object.defineProperty($$, k, v)), $$;
+};
+
+const setObjectMethods = function (of, methods) {
+    const $$ = getPrototype(of);
+    return forEachObject(methods, (v, k) => $$[k] = v), $$;
+};
+
+const setPrototype = (of, value) => of.prototype = value;
+
+const setReference = (key, value) => setValueInMap(key, value, references);
+
+const setValueInMap = (k, v, map) => map.set(k, v);
+
+const toKeyFirstFromMap = map => toKeysFromMap(map).shift();
+
+const toKeyLastFromMap = map => toKeysFromMap(map).pop();
+
+const toKeysFromMap = function (map) {
+    let r = [];
+    return forEachMap(map, (v, k) => r.push(k)), r;
+};
+
+const toValueFirstFromMap = map => toValuesFromMap(map).shift();
+
+const toValueLastFromMap = map => toValuesFromMap(map).pop();
+
+const toValuesFromMap = function (map) {
+    let r = [];
+    return forEachMap(map, v => r.push(v)), r;
+};
+
+const references = new WeakMap;
+
 Object.assign(exports, {
     forEachArray,
     forEachMap,
-    forEachObject
+    forEachObject,
+    getPrototype,
+    getReference,
+    getValueInMap,
+    hasKeyInMap,
+    letReference,
+    letValueInMap,
+    setObjectAttributes,
+    setObjectMethods,
+    setPrototype,
+    setReference,
+    setValueInMap,
+    toKeyFirstFromMap,
+    toKeyLastFromMap,
+    toKeysFromMap,
+    toValueFirstFromMap,
+    toValueLastFromMap,
+    toValuesFromMap
 });

@@ -26,8 +26,83 @@ forEachArray([1, 2, 3], function (value, key) {
 Methods
 -------
 
-### forEachArray(array, then)
+### forEachArray(array, at)
 
-### forEachMap(map, then)
+### forEachMap(map, at)
 
-### forEachObject(object, then)
+### forEachObject(object, at)
+
+### getPrototype(of)
+
+### getReference(key)
+
+### getValueInMap(key, map)
+
+### hasKeyInMap(key, map)
+
+### letReference(key)
+
+### letValueInMap(key)
+
+### setObjectAttributes(of, attributes)
+
+~~~ js
+function Editor(self, state) {
+    this.self = self;
+    this.state = state;
+    return this;
+}
+
+setObjectAttributes(Editor, {
+    'name': {
+        value: 'Editor'
+    },
+    'value': {
+        get: function () {
+            return this.self.value;
+        },
+        set: function (value) {
+            this.self.value = value;
+        }
+    }
+});
+~~~
+
+### setObjectMethods(of, methods)
+
+~~~ js
+function Editor(self, state) {
+    this.self = self;
+    this.state = state;
+    return this;
+}
+
+setObjectMethods(Editor, {
+    'restore': function () {
+        this.value = localStorage.getItem('session');
+        return this;
+    },
+    'save': function () {
+        localStorage.setItem('session', this.value);
+        return this;
+    }
+});
+~~~
+
+### setPrototype(of, value)
+
+### setReference(key, value)
+
+### setValueInMap(key, value, map)
+
+### toKeyFirstFromMap(map)
+
+### toKeyLastFromMap(map)
+
+### toKeysFromMap(map)
+
+### toValueFirstFromMap(map)
+
+### toValueLastFromMap(map)
+
+### toValuesFromMap(map)

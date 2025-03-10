@@ -1,8 +1,8 @@
 import {toCount} from '@taufik-nurrohman/to';
 
-export const forEachArray = function (array, then) {
+export const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
-        v = then(array[i], i);
+        v = at(array[i], i);
         if (0 === v) {
             break;
         }
@@ -13,9 +13,9 @@ export const forEachArray = function (array, then) {
     return array;
 };
 
-export const forEachMap = function (map, then) {
+export const forEachMap = function (map, at) {
     for (let [k, v] of map) {
-        v = then(v, k);
+        v = at(v, k);
         if (0 === v) {
             break;
         }
@@ -26,10 +26,10 @@ export const forEachMap = function (map, then) {
     return map;
 };
 
-export const forEachObject = function (object, then) {
+export const forEachObject = function (object, at) {
     let v;
     for (let k in object) {
-        v = then(object[k], k);
+        v = at(object[k], k);
         if (0 === v) {
             break;
         }
@@ -39,3 +39,51 @@ export const forEachObject = function (object, then) {
     }
     return object;
 };
+
+export const getPrototype = of => of.prototype;
+
+export const getReference = key => getValueInMap(key, references) || null;
+
+export const getValueInMap = (k, map) => map.get(k);
+
+export const hasKeyInMap = (k, map) => map.has(k);
+
+export const letReference = k => letValueInMap(k, references);
+
+export const letValueInMap = (k, map) => map.delete(k);
+
+export const setObjectAttributes = function (of, attributes) {
+    const $$ = getPrototype(of);
+    return forEachObject(attributes, (v, k) => Object.defineProperty($$, k, v)), $$;
+};
+
+export const setObjectMethods = function (of, methods) {
+    const $$ = getPrototype(of);
+    return forEachObject(methods, (v, k) => $$[k] = v), $$;
+};
+
+export const setPrototype = (of, value) => of.prototype = value;
+
+export const setReference = (key, value) => setValueInMap(key, value, references);
+
+export const setValueInMap = (k, v, map) => map.set(k, v);
+
+export const toKeyFirstFromMap = map => toKeysFromMap(map).shift();
+
+export const toKeyLastFromMap = map => toKeysFromMap(map).pop();
+
+export const toKeysFromMap = function (map) {
+    let r = [];
+    return forEachMap(map, (v, k) => r.push(k)), r;
+};
+
+export const toValueFirstFromMap = map => toValuesFromMap(map).shift();
+
+export const toValueLastFromMap = map => toValuesFromMap(map).pop();
+
+export const toValuesFromMap = function (map) {
+    let r = [];
+    return forEachMap(map, v => r.push(v)), r;
+};
+
+const references = new WeakMap;
