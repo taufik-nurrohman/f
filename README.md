@@ -6,7 +6,7 @@ Usage
 ### CommonJS
 
 ~~~ js
-const {forEachArray} = require('@taufik-nurrohman/h');
+const {forEachArray} = require('@taufik-nurrohman/f');
 
 forEachArray([1, 2, 3], function (value, key) {
     console.log(value);
@@ -16,7 +16,7 @@ forEachArray([1, 2, 3], function (value, key) {
 ### ECMAScript
 
 ~~~ js
-import {forEachArray} from '@taufik-nurrohman/h';
+import {forEachArray} from '@taufik-nurrohman/f';
 
 forEachArray([1, 2, 3], function (value, key) {
     console.log(value);
