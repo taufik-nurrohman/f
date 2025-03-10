@@ -44,7 +44,7 @@ Methods
 
 ### letValueInMap(key)
 
-### setObjectAttributes(of, attributes)
+### setObjectAttributes(of, attributes, toPrototype = true)
 
 ~~~ js
 function Editor(self, state) {
@@ -68,7 +68,7 @@ setObjectAttributes(Editor, {
 });
 ~~~
 
-### setObjectMethods(of, methods)
+### setObjectMethods(of, methods, toPrototype = true)
 
 ~~~ js
 function Editor(self, state) {
