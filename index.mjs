@@ -1,4 +1,4 @@
-import {toCount} from '@taufik-nurrohman/is';
+import {toCount} from '@taufik-nurrohman/to';
 
 export const forEachArray = function (array, then) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
