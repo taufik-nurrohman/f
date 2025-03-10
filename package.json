@@ -1,0 +1,28 @@
+{
+  "author": "Taufik Nurrohman",
+  "bugs": "https://github.com/taufik-nurrohman/h/issues",
+  "dependencies": {
+    "@taufik-nurrohman/to": "*"
+  },
+  "description": "Utility functions that do not fit into a specific category.",
+  "exports": {
+    "import": "./index.mjs",
+    "require": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "index.mjs"
+  ],
+  "homepage": "https://taufik-nurrohman.js.org",
+  "keywords": [
+    "utility"
+  ],
+  "license": "MIT",
+  "main": "index.mjs",
+  "name": "@taufik-nurrohman/h",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taufik-nurrohman/h.git"
+  },
+  "version": "1.0.0"
+}
