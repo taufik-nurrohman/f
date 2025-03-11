@@ -44,7 +44,7 @@ Methods
 
 ### letValueInMap(key)
 
-### setObjectAttributes(of, attributes, toPrototype = true)
+### setObjectAttributes(of, attributes, asStaticAttributes)
 
 ~~~ js
 function Editor(self, state) {
@@ -56,7 +56,10 @@ function Editor(self, state) {
 setObjectAttributes(Editor, {
     'name': {
         value: 'Editor'
-    },
+    }
+}, true);
+
+setObjectAttributes(Editor, {
     'value': {
         get: function () {
             return this.self.value;
@@ -68,7 +71,7 @@ setObjectAttributes(Editor, {
 });
 ~~~
 
-### setObjectMethods(of, methods, toPrototype = true)
+### setObjectMethods(of, methods, asStaticMethods)
 
 ~~~ js
 function Editor(self, state) {

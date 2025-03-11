@@ -52,15 +52,15 @@ export const letReference = k => letValueInMap(k, references);
 
 export const letValueInMap = (k, map) => map.delete(k);
 
-export const setObjectAttributes = function (of, attributes, toPrototype = true) {
-    if (toPrototype) {
+export const setObjectAttributes = function (of, attributes, asStaticAttributes) {
+    if (!asStaticAttributes) {
         of = getPrototype(of);
     }
     return forEachObject(attributes, (v, k) => Object.defineProperty(of, k, v)), of;
 };
 
-export const setObjectMethods = function (of, methods, toPrototype = true) {
-    if (toPrototype) {
+export const setObjectMethods = function (of, methods, asStaticMethods) {
+    if (!asStaticMethods) {
         of = getPrototype(of);
     }
     return forEachObject(methods, (v, k) => of[k] = v), of;
