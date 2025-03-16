@@ -29,8 +29,8 @@ Methods
 ### forEachArray(array, at)
 
 ~~~ js
-forEachArray(array, function (v, k) {
-    return -1; // Delete at index `k`
+forEachArray(array, function (value, index) {
+    return -1; // Delete at index `index`
     return 0; // Break
     return 1; // Continue
     return; // Continue
@@ -40,8 +40,8 @@ forEachArray(array, function (v, k) {
 ### forEachMap(map, at)
 
 ~~~ js
-forEachArray(array, function (v, k) {
-    return -1; // Delete entry `k`
+forEachMap(map, function (value, key) {
+    return -1; // Delete entry `key`
     return 0; // Break
     return 1; // Continue
     return; // Continue
@@ -49,6 +49,15 @@ forEachArray(array, function (v, k) {
 ~~~
 
 ### forEachObject(object, at)
+
+~~~ js
+forEachObject(object, function (value, key) {
+    return -1; // Delete entry `key`
+    return 0; // Break
+    return 1; // Continue
+    return; // Continue
+});
+~~~
 
 ### getPrototype(of)
 
