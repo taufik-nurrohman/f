@@ -28,7 +28,25 @@ Methods
 
 ### forEachArray(array, at)
 
+~~~ js
+forEachArray(array, function (v, k) {
+    return -1; // Delete at index `k`
+    return 0; // Break
+    return 1; // Continue
+    return; // Continue
+});
+~~~
+
 ### forEachMap(map, at)
+
+~~~ js
+forEachArray(array, function (v, k) {
+    return -1; // Delete entry `k`
+    return 0; // Break
+    return 1; // Continue
+    return; // Continue
+});
+~~~
 
 ### forEachObject(object, at)
 

@@ -3,6 +3,10 @@ import {toCount} from '@taufik-nurrohman/to';
 export const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
         v = at(array[i], i);
+        if (-1 === v) {
+            array.splice(i, 1);
+            continue;
+        }
         if (0 === v) {
             break;
         }
@@ -16,6 +20,10 @@ export const forEachArray = function (array, at) {
 export const forEachMap = function (map, at) {
     for (let [k, v] of map) {
         v = at(v, k);
+        if (-1 === v) {
+            map.delete(k);
+            continue;
+        }
         if (0 === v) {
             break;
         }
@@ -30,6 +38,10 @@ export const forEachObject = function (object, at) {
     let v;
     for (let k in object) {
         v = at(object[k], k);
+        if (-1 === v) {
+            delete object[k];
+            continue;
+        }
         if (0 === v) {
             break;
         }
