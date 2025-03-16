@@ -56,14 +56,18 @@ const setObjectAttributes = function (of, attributes, asStaticAttributes) {
     if (!asStaticAttributes) {
         of = getPrototype(of);
     }
-    return forEachObject(attributes, (v, k) => Object.defineProperty(of, k, v)), of;
+    return forEachObject(attributes, (v, k) => {
+        Object.defineProperty(of, k, v);
+    }), of;
 };
 
 const setObjectMethods = function (of, methods, asStaticMethods) {
     if (!asStaticMethods) {
         of = getPrototype(of);
     }
-    return forEachObject(methods, (v, k) => of[k] = v), of;
+    return forEachObject(methods, (v, k) => {
+        of[k] = v;
+    }), of;
 };
 
 const setPrototype = (of, value) => of.prototype = value;
@@ -78,7 +82,9 @@ const toKeyLastFromMap = map => toKeysFromMap(map).pop();
 
 const toKeysFromMap = function (map) {
     let r = [];
-    return forEachMap(map, (v, k) => r.push(k)), r;
+    return forEachMap(map, (v, k) => {
+        r.push(k);
+    }), r;
 };
 
 const toValueFirstFromMap = map => toValuesFromMap(map).shift();
@@ -87,7 +93,9 @@ const toValueLastFromMap = map => toValuesFromMap(map).pop();
 
 const toValuesFromMap = function (map) {
     let r = [];
-    return forEachMap(map, v => r.push(v)), r;
+    return forEachMap(map, v => {
+        r.push(v);
+    }), r;
 };
 
 const references = new WeakMap;
