@@ -53,7 +53,20 @@ export const forEachObject = function (object, at) {
 };
 
 export const forEachSet = function (set, at) {
-    return forEachMap(set.entries(), at);
+    for (let [k, v] of set.entries()) {
+        v = at(v, k);
+        if (-1 === v) {
+            letValueInMap(k, set);
+            continue;
+        }
+        if (0 === v) {
+            break;
+        }
+        if (1 === v) {
+            continue;
+        }
+    }
+    return set;
 };
 
 export const getPrototype = of => of.prototype;
