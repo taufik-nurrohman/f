@@ -1,3 +1,4 @@
+const {isFunction} = require('@taufik-nurrohman/is');
 const {toCount} = require('@taufik-nurrohman/to');
 
 const forEachArray = function (array, at) {
@@ -81,6 +82,10 @@ const letReference = k => letValueInMap(k, references);
 
 const letValueInMap = (k, map) => map.delete(k);
 
+const onAnimationsEnd = (node, task) => {
+    return (isFunction(node.getAnimations) ? Promise.all(node.getAnimations().map(v => v.finished)).then(task) : task()), node;
+};
+
 const setObjectAttributes = function (of, attributes, asStaticAttributes) {
     if (!asStaticAttributes) {
         of = getPrototype(of);
@@ -140,6 +145,7 @@ Object.assign(exports, {
     hasKeyInMap,
     letReference,
     letValueInMap,
+    onAnimationsEnd,
     setObjectAttributes,
     setObjectMethods,
     setPrototype,

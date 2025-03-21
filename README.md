@@ -82,6 +82,8 @@ forEachSet(set, function (value) {
 
 ### letValueInMap(key)
 
+### onAnimationsEnd(node, task)
+
 ### setObjectAttributes(of, attributes, asStaticAttributes)
 
 ~~~ js

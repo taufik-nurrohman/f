@@ -1,3 +1,4 @@
+import {isFunction} from '@taufik-nurrohman/is';
 import {toCount} from '@taufik-nurrohman/to';
 
 export const forEachArray = function (array, at) {
@@ -80,6 +81,10 @@ export const hasKeyInMap = (k, map) => map.has(k);
 export const letReference = k => letValueInMap(k, references);
 
 export const letValueInMap = (k, map) => map.delete(k);
+
+export const onAnimationsEnd = (node, task) => {
+    return (isFunction(node.getAnimations) ? Promise.all(node.getAnimations().map(v => v.finished)).then(task) : task()), node;
+};
 
 export const setObjectAttributes = function (of, attributes, asStaticAttributes) {
     if (!asStaticAttributes) {
