@@ -59,6 +59,17 @@ forEachObject(object, function (value, key) {
 });
 ~~~
 
+### forEachSet(object, at)
+
+~~~ js
+forEachSet(set, function (value) {
+    return -1; // Delete entry `value`
+    return 0; // Break
+    return 1; // Continue
+    return; // Continue
+});
+~~~
+
 ### getPrototype(of)
 
 ### getReference(key)

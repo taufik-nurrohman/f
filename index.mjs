@@ -21,7 +21,7 @@ export const forEachMap = function (map, at) {
     for (let [k, v] of map) {
         v = at(v, k);
         if (-1 === v) {
-            map.delete(k);
+            letValueInMap(k, map);
             continue;
         }
         if (0 === v) {
@@ -50,6 +50,10 @@ export const forEachObject = function (object, at) {
         }
     }
     return object;
+};
+
+export const forEachSet = function (set, at) {
+    return forEachMap(set, at);
 };
 
 export const getPrototype = of => of.prototype;

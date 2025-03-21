@@ -52,6 +52,10 @@ const forEachObject = function (object, at) {
     return object;
 };
 
+export const forEachSet = function (set, at) {
+    return forEachMap(set, at);
+};
+
 const getPrototype = of => of.prototype;
 
 const getReference = key => getValueInMap(key, references) || null;
@@ -116,6 +120,7 @@ Object.assign(exports, {
     forEachArray,
     forEachMap,
     forEachObject,
+    forEachSet,
     getPrototype,
     getReference,
     getValueInMap,
