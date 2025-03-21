@@ -53,7 +53,7 @@ const forEachObject = function (object, at) {
 };
 
 export const forEachSet = function (set, at) {
-    return forEachMap(set, at);
+    return forEachMap(set.entries(), at);
 };
 
 const getPrototype = of => of.prototype;
