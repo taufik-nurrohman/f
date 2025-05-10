@@ -104,7 +104,7 @@ const setObjectMethods = function (of, methods, asStaticMethods) {
     }), of;
 };
 
-const setPrototype = (of, value) => getPrototype(of) = value;
+const setPrototype = (of, value) => (getPrototype(of) = value);
 
 const setReference = (key, value) => setValueInMap(key, value, references);
 
