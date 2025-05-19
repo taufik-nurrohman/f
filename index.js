@@ -3,7 +3,7 @@ const {toCount} = require('@taufik-nurrohman/to');
 
 const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
-        v = at(array[i], i);
+        v = at.call(array, array[i], i);
         if (-1 === v) {
             array.splice(i, 1);
             continue;
@@ -19,10 +19,13 @@ const forEachArray = function (array, at) {
 };
 
 const forEachMap = function (map, at) {
-    for (let [k, v] of map) {
-        v = at(v, k);
+    let items = map.entries(),
+        item = items.next();
+    while (!item.done) {
+        let [k, v] = item.value;
+        v = at.call(map, v, k);
         if (-1 === v) {
-            map.delete(k);
+            letValueInMap(k, map);
             continue;
         }
         if (0 === v) {
@@ -31,6 +34,7 @@ const forEachMap = function (map, at) {
         if (1 === v) {
             continue;
         }
+        item = items.next();
     }
     return map;
 };
@@ -38,7 +42,7 @@ const forEachMap = function (map, at) {
 const forEachObject = function (object, at) {
     let v;
     for (let k in object) {
-        v = at(object[k], k);
+        v = at.call(object, object[k], k);
         if (-1 === v) {
             delete object[k];
             continue;
@@ -54,8 +58,11 @@ const forEachObject = function (object, at) {
 };
 
 const forEachSet = function (set, at) {
-    for (let [k, v] of set.entries()) {
-        v = at(v, k);
+    let items = set.entries(),
+        item = items.next();
+    while (!item.done) {
+        let [k, v] = item.value;
+        v = at.call(set, v, k);
         if (-1 === v) {
             letValueInMap(k, set);
             continue;
@@ -66,6 +73,7 @@ const forEachSet = function (set, at) {
         if (1 === v) {
             continue;
         }
+        item = items.next();
     }
     return set;
 };
