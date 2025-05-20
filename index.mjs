@@ -26,13 +26,8 @@ export const forEachMap = function (map, at) {
         v = at.call(map, v, k);
         if (-1 === v) {
             letValueInMap(k, map);
-            continue;
-        }
-        if (0 === v) {
+        } else if (0 === v) {
             break;
-        }
-        if (1 === v) {
-            continue;
         }
         item = items.next();
     }
@@ -65,13 +60,8 @@ export const forEachSet = function (set, at) {
         v = at.call(set, v, k);
         if (-1 === v) {
             letValueInMap(k, set);
-            continue;
-        }
-        if (0 === v) {
+        } else if (0 === v) {
             break;
-        }
-        if (1 === v) {
-            continue;
         }
         item = items.next();
     }
