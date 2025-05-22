@@ -60,10 +60,10 @@ export const forEachSet = function (set, at) {
     let items = _toIterator(set),
         item = items.next();
     while (!item.done) {
-        let [k, v] = item.value;
-        v = at.call(set, v, k);
+        let v = item.value;
+        v = at.call(set, v, v);
         if (-1 === v) {
-            letValueInMap(k, set);
+            letValueInMap(v, set);
         } else if (0 === v) {
             break;
         }
