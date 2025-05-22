@@ -1,6 +1,10 @@
 const {isFunction} = require('@taufik-nurrohman/is');
 const {toCount} = require('@taufik-nurrohman/to');
 
+function _toIterator(v) {
+    return v[Symbol.iterator]();
+}
+
 const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
         v = at.call(array, array[i], i);
@@ -19,7 +23,7 @@ const forEachArray = function (array, at) {
 };
 
 const forEachMap = function (map, at) {
-    let items = map.entries(),
+    let items = _toIterator(map),
         item = items.next();
     while (!item.done) {
         let [k, v] = item.value;
@@ -53,7 +57,7 @@ const forEachObject = function (object, at) {
 };
 
 const forEachSet = function (set, at) {
-    let items = set.entries(),
+    let items = _toIterator(set),
         item = items.next();
     while (!item.done) {
         let [k, v] = item.value;

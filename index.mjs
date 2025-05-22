@@ -1,6 +1,10 @@
 import {isFunction} from '@taufik-nurrohman/is';
 import {toCount} from '@taufik-nurrohman/to';
 
+function _toIterator(v) {
+    return v[Symbol.iterator]();
+}
+
 export const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
         v = at.call(array, array[i], i);
@@ -19,7 +23,7 @@ export const forEachArray = function (array, at) {
 };
 
 export const forEachMap = function (map, at) {
-    let items = map.entries(),
+    let items = _toIterator(map),
         item = items.next();
     while (!item.done) {
         let [k, v] = item.value;
@@ -53,7 +57,7 @@ export const forEachObject = function (object, at) {
 };
 
 export const forEachSet = function (set, at) {
-    let items = set.entries(),
+    let items = _toIterator(set),
         item = items.next();
     while (!item.done) {
         let [k, v] = item.value;
