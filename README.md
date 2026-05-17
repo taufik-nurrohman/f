@@ -59,7 +59,7 @@ forEachObject(object, function (value, key) {
 });
 ~~~
 
-### forEachSet(object, at)
+### forEachSet(set, at)
 
 ~~~ js
 forEachSet(set, function (value) {

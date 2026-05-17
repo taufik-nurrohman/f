@@ -9,14 +9,11 @@ export const forEachArray = function (array, at) {
     for (let i = 0, j = toCount(array), v; i < j; ++i) {
         v = at.call(array, array[i], i);
         if (-1 === v) {
-            array.splice(i, 1);
+            array.splice(i--, 1);
+            --j;
             continue;
-        }
-        if (0 === v) {
+        } else if (0 === v) {
             break;
-        }
-        if (1 === v) {
-            continue;
         }
     }
     return array;
@@ -41,16 +38,15 @@ export const forEachMap = function (map, at) {
 export const forEachObject = function (object, at) {
     let v;
     for (let k in object) {
+        if (!Object.hasOwn(object, k)) {
+            continue;
+        }
         v = at.call(object, object[k], k);
         if (-1 === v) {
             delete object[k];
             continue;
-        }
-        if (0 === v) {
+        } else if (0 === v) {
             break;
-        }
-        if (1 === v) {
-            continue;
         }
     }
     return object;
